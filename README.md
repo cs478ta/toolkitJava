@@ -1,5 +1,5 @@
 # toolkitJava
-478 toolkit in Java
+This is the Java toolkit for CS 478, Tools for Machine Learning, at Brigham Young University.
 
 ## Build Instructions for Linux:
 

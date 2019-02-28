@@ -20,7 +20,7 @@ public abstract class SupervisedLearner {
 
 	// The model must be trained before you call this method. If the label is nominal,
 	// it returns the predictive accuracy. If the label is continuous, it returns
-	// the root mean squared error (RMSE). If confusion is non-NULL, and the
+	// the mean squared error (MSE). If confusion is non-NULL, and the
 	// output label is nominal, then confusion will hold stats for a confusion matrix.
 	public double measureAccuracy(Matrix features, Matrix labels, Matrix confusion) throws Exception
 	{
@@ -34,7 +34,7 @@ public abstract class SupervisedLearner {
 		int labelValues = labels.valueCount(0);
 		if(labelValues == 0) // If the label is continuous...
 		{
-			// The label is continuous, so measure root mean squared error
+			// The label is continuous, so measure mean squared error
 			double[] pred = new double[1];
 			double sse = 0.0;
 			for(int i = 0; i < features.rows(); i++)
@@ -46,7 +46,7 @@ public abstract class SupervisedLearner {
 				double delta = targ[0] - pred[0];
 				sse += (delta * delta);
 			}
-			return Math.sqrt(sse / features.rows());
+			return sse / features.rows();
 		}
 		else
 		{
